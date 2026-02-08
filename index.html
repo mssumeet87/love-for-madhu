@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love for Madhu 💖</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #1a001a, #000);
+  color: #fff;
+  overflow-x: hidden;
+  text-align: center;
+}
+
+/* Floating flowers */
+.flower {
+  position: fixed;
+  top: -50px;
+  font-size: 24px;
+  animation: fall linear infinite;
+  opacity: 0.8;
+}
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+
+/* Quiz box */
+#quizBox {
+  padding: 20px;
+  margin-top: 40px;
+}
+
+.option {
+  background: rgba(255,255,255,0.1);
+  padding: 12px;
+  margin: 10px auto;
+  width: 85%;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.option:hover {
+  background: rgba(255,105,180,0.6);
+}
+
+/* Love letter */
+#loveLetter {
+  display: none;
+  padding: 25px;
+  animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* Glowing name */
+.glow-name {
+  font-size: 1.8em;
+  font-weight: bold;
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0% { text-shadow: 0 0 5px #ff9aa2; }
+  50% { text-shadow: 0 0 25px #ff4d6d; }
+  100% { text-shadow: 0 0 5px #ff9aa2; }
+}
+
+/* Bouquet */
+#bouquet {
+  font-size: 70px;
+  animation: bounce 1.5s infinite;
+}
+@keyframes bounce {
+  50% { transform: translateY(-15px); }
+}
+
+/* Hidden */
+.hidden { display: none; }
+</style>
+</head>
+
+<body>
+
+<!-- Flowers -->
+<script>
+for (let i = 0; i < 25; i++) {
+  const f = document.createElement("div");
+  f.className = "flower";
+  f.innerText = "🌸";
+  f.style.left = Math.random() * 100 + "vw";
+  f.style.animationDuration = (5 + Math.random()*5) + "s";
+  document.body.appendChild(f);
+}
+</script>
+
+<!-- QUIZ -->
+<div id="quizBox">
+  <h2 id="question"></h2>
+  <div id="options"></div>
+</div>
+
+<!-- LOVE LETTER -->
+<div id="loveLetter">
+  <h1>💖 My Love 💖</h1>
+
+  <p>
+    Dear <span class="glow-name">Madhumita 🐇</span>,
+  </p>
+
+  <p>
+    Tum meri zindagi ka woh hissa ho jiska koi replacement nahi.
+    Shah Rukh Khan ne kaha tha —
+    <br><br>
+    <i>
+    “Main tumse pyaar isliye nahi karta kyunki tum khoobsurat ho,
+    balki tum khoobsurat ho kyunki main tumse pyaar karta hoon.”
+    </i>
+  </p>
+
+  <p>
+    Jab tum muskurati ho, meri duniya ruk jaati hai.
+    Main tumhara haath pakad ke har mushkil paar karna chahta hoon.
+  </p>
+
+  <h2>🌹 Will you be mine forever? 🌹</h2>
+
+  <div id="bouquet">💐</div>
+
+  <p style="margin-top:20px;font-style:italic;">
+    “Tujhko lekar mera khayal nahi badlega,  
+    saal badlenge magar dil ka haal nahi badlega !!!!  
+    my love @ thekua”
+  </p>
+
+  <audio id="bgm" src="music.mp3" autoplay loop></audio>
+</div>
+
+<script>
+const quiz = [
+  {
+    q: "💖 How much pretty you are?",
+    options: ["Pretty", "Cute", "Beautiful", "Most beautiful for me ❤️"],
+    correct: 3
+  },
+  {
+    q: "💌 How much you think I love you?",
+    options: ["A lot", "So much", "Uncountable", "Infinity to the power Infinity ❤️"],
+    correct: 3
+  },
+  {
+    q: "💍 Will you marry me?",
+    options: ["Maybe", "I will think", "Yes ❤️", "Ask later"],
+    correct: 2
+  },
+  {
+    q: "👩‍❤️‍👨 How beautiful couple we look?",
+    options: ["Good", "Nice", "Very cute", "Most beautiful ❤️"],
+    correct: 3
+  },
+  {
+    q: "💖 Why do you think I did all this?",
+    options: ["Time pass", "For fun", "Because I can", "Always for you ❤️"],
+    correct: 3
+  }
+];
+
+let index = 0;
+const qEl = document.getElementById("question");
+const optEl = document.getElementById("options");
+const quizBox = document.getElementById("quizBox");
+const loveLetter = document.getElementById("loveLetter");
+
+function loadQuestion() {
+  qEl.innerText = quiz[index].q;
+  optEl.innerHTML = "";
+  quiz[index].options.forEach((opt, i) => {
+    const div = document.createElement("div");
+    div.className = "option";
+    div.innerText = opt;
+    div.onclick = () => checkAnswer(i);
+    optEl.appendChild(div);
+  });
+}
+
+function checkAnswer(i) {
+  if (i === quiz[index].correct) {
+    index++;
+    if (index < quiz.length) {
+      loadQuestion();
+    } else {
+      quizBox.classList.add("hidden");
+      loveLetter.style.display = "block";
+      document.getElementById("bgm").play().catch(()=>{});
+    }
+  } else {
+    alert("Think again… from your heart ❤️");
+  }
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html>
