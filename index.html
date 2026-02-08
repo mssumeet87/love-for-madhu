@@ -81,7 +81,17 @@ body {
 @keyframes bounce {
   50% { transform: translateY(-15px); }
 }
-
+<button onclick="playMusic()" style="
+  padding:12px 25px;
+  font-size:16px;
+  border:none;
+  border-radius:25px;
+  background:#ff4d6d;
+  color:white;
+  margin-top:20px;
+">
+Tap to feel my heart ❤️
+</button>
 /* Hidden */
 .hidden { display: none; }
 </style>
@@ -204,9 +214,11 @@ function checkAnswer(i) {
     alert("Think again… from your heart ❤️");
   }
 }
-
+function playMusic() {
+  document.getElementById("bgm").play();
+}
 loadQuestion();
 </script>
-
+ 
 </body>
 </html>
